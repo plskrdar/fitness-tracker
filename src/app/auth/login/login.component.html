@@ -1,0 +1,17 @@
+<section class="login-form">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="email">
+      <mat-hint>Put your email address.</mat-hint>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Email is invalid</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-hint>Put your password.</mat-hint>
+      <mat-error *ngIf="loginForm.get('password').errors?.required">Password is required.</mat-error>
+      <mat-error *ngIf="loginForm.get('password').errors?.minlength">Password is too short.</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button [disabled]="loginForm.invalid">Submit</button>
+  </form>
+</section>
